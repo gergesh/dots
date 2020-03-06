@@ -1,0 +1,10 @@
+# Add local binaries to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# Programs
+export EDITOR='vim'
+export BROWSER='firefox'
+export READER='zathura'
+
+# Make fzf behave the way we want it to
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'

@@ -1,0 +1,48 @@
+# ls improvements
+alias ls='ls --color=auto'
+alias ll='ls -la'
+
+# git
+alias g='git'
+alias gc='git clone'
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gcm='git commit --message'
+alias gcam='git commit --add --message'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gch='git checkout'
+alias gchm='git checkout master'
+alias gchb='git checkout -b'
+alias gl='git log --decorate'
+alias glg='git log --decorate --graph'
+alias glo='git log --decorate --graph --oneline'
+alias gld='git log --decorate --graph --patch'  # Show diff. 'gld' = 'git log diff'
+alias gp='git push'
+alias gpo='git push origin'
+alias gpom='git push origin master'
+
+# always use protection
+alias rm="echo Use 'del' or 'rm!'"
+alias rm!="$(whereis -b rm | awk '{print $2}')"
+alias del='trash-put'
+
+# fasd utils
+alias v='f -e vim'
+alias m='f -e mpv'
+alias o='a -e xdg-open'
+
+# misc
+alias epoch='date +%s'
+alias vi='vim'
+mkd() { mkdir -p "$1" && cd "$1" }
+bak() {
+    if [ -f "$1.bak" ]; then
+        echo "File $1.bak already exists"
+    else
+        cp -- "$1" "$1.bak"
+    fi
+}

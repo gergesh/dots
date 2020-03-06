@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# in cmus: ":bind -f common q shell tmux detach"
+
+CMUS_SESSION='cmus'
+CMUS_BIN='/usr/bin/cmus'
+
+if ! tmux list-sessions | grep -q "^$CMUS_SESSION:"; then
+    tmux new-session -s "$CMUS_SESSION" -d "$CMUS_BIN"
+    tmux set -w -t "$CMUS_SESSION" status off
+fi
+
+unset TMUX
+tmux attach -t cmus > /dev/null
