@@ -23,4 +23,4 @@ zsh:
 	mkdir -p ~/.config
 	cp zshrc ~/.zshrc
 	cp aliasrc ~/.config/
-	cp exportsrc ~/.config/
+	cp exportrc ~/.config/

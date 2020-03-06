@@ -79,7 +79,7 @@ setopt no_auto_remove_slash
 
 # Load aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
-[ -f "$HOME/.config/exportsrc" ] && source "$HOME/.config/exportsrc"
+[ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
 
 # Load fasd shortcuts
 eval "$(fasd --init auto)"
