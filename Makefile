@@ -1,4 +1,4 @@
-install: nvim nvim-plug tmux tpm bins zsh
+install: nvim nvim-plug tmux tpm bins libs zsh
 
 nvim:
 	mkdir -p ~/.config/nvim
@@ -18,6 +18,10 @@ tpm:
 bins:
 	mkdir -p ~/.local/bin
 	cp bin/* ~/.local/bin/
+
+libs:
+	mkdir -p ~/.local/lib
+	cp lib/* ~/.local/lib/
 
 zsh:
 	mkdir -p ~/.config
