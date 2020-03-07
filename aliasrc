@@ -24,6 +24,7 @@ alias gld='git log --decorate --graph --patch'  # Show diff. 'gld' = 'git log di
 alias gp='git push'
 alias gpo='git push origin'
 alias gpom='git push origin master'
+alias gpl='git pull'
 
 # always use protection
 alias rm="echo Use 'del' or 'rm!'"
