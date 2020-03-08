@@ -77,6 +77,9 @@ bindkey '^e' edit-command-line
 # Keep trailing slashes on commands
 setopt no_auto_remove_slash
 
+# Allow comments in repl
+setopt interactive_comments
+
 # Load aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 [ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
