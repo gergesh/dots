@@ -13,7 +13,7 @@ tmux:
 	cp tmux.conf ~/.config/tmux/tmux.conf
 
 tpm:
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm || true
+	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm || true
 
 bins:
 	mkdir -p ~/.local/bin
