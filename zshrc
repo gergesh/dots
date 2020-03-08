@@ -80,9 +80,10 @@ setopt no_auto_remove_slash
 # Allow comments in repl
 setopt interactive_comments
 
-# Load aliases
+# Load other configuration files
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 [ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
+[ -f "$HOME/.config/machinerc" ] && source "$HOME/.config/machinerc"
 
 # Load fasd shortcuts
 eval "$(fasd --init auto)"
