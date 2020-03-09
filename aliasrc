@@ -38,6 +38,11 @@ alias v='f -e vim'
 alias m='f -e mpv'
 alias o='a -e xdg-open'
 
+# fzf shortcuts
+alias fv='vim "$(fzf)"'
+alias fo='xdg-open "$(fzf)"'
+alias fm='mpv "$(fzf)"'
+
 # misc
 alias epoch='date +%s'
 alias vi='vim'
