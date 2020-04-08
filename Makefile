@@ -1,4 +1,4 @@
-install: nvim nvim-plug tmux tpm bins libs zsh
+install: nvim nvim-plug tmux tpm bins libs zsh ptpython
 
 nvim:
 	mkdir -p ~/.config/nvim
@@ -29,3 +29,7 @@ zsh:
 	cp zshrc ~/.zshrc
 	cp aliasrc ~/.config/
 	cp exportrc ~/.config/
+
+ptpython:
+	mkdir -p ~/.config/ptpython
+	cp ptpython.py ~/.config/ptpython/config.py
