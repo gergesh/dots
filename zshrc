@@ -9,7 +9,7 @@ PS1="%F{blue}λ %1~$PS1_HOSTNAME %f"
 # History
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=~/.cache/zsh/history
+HISTFILE=~/.cache/zsh_history
 
 # Autocompletion
 autoload -U compinit
