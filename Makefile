@@ -14,6 +14,7 @@ tmux:
 
 tpm:
 	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm || true
+	~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
 
 bins:
 	mkdir -p ~/.local/bin
