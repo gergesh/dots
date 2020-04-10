@@ -11,6 +11,7 @@ nvim-plug:
 tmux:
 	mkdir -p ~/.config/tmux
 	cp tmux.conf ~/.config/tmux/tmux.conf
+	ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 tpm:
 	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm || true
