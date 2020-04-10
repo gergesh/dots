@@ -1,5 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'arcticicestudio/nord-vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'jiangmiao/auto-pairs'
 if file_readable('/usr/share/vim/vimfiles/plugin/fzf.vim')
     Plug '/usr/share/vim/vimfiles/'
@@ -42,3 +43,9 @@ au BufWritePost *Xresources !xrdb %
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
   \| exe "normal! g'\"" | endif
 
+" vim-tmux-navigator keybindings
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <C-Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
