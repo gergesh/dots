@@ -33,6 +33,8 @@ alias gplr='git pull --rebase'
 alias rm="echo Use 'del' or 'rm!'"
 alias rm!="$(whereis -b rm | awk '{print $2}')"
 alias del='trash-put'
+alias cp='cp -i'
+alias mv='mv -i'
 
 # fasd utils
 alias v='f -e vim'
