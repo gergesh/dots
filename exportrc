@@ -8,3 +8,6 @@ export READER='zathura'
 
 # Make fzf behave the way we want it to
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# Disable annoying GLib accessibility warnings
+export NO_AT_BRIDGE=1
