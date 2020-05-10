@@ -1,5 +1,5 @@
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/yoav/.zshrc'
+zstyle :compinstall filename "$HOME/.zshrc"
 
 # Colors and prompt
 autoload -U colors && colors
