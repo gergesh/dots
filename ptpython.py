@@ -5,6 +5,8 @@ Copy this file to $XDG_CONFIG_HOME/ptpython/config.py
 """
 from __future__ import unicode_literals
 
+from threading import Thread
+
 from prompt_toolkit.filters import ViInsertMode
 from prompt_toolkit.key_binding.key_processor import KeyPress
 from prompt_toolkit.keys import Keys
@@ -171,6 +173,15 @@ def configure(repl):
         b.insert_text(' ')
     """
 
+    def import_common(repl):
+        repl._execute('import json')
+        repl._execute('import re')
+        repl._execute('import struct')
+        repl._execute('from pathlib import Path')
+
+        repl._execute('try:\n    import requests\nexcept ImportError:\n    pass')
+
+    Thread(target=import_common, args=(repl, ), daemon=True).start()
 
 # Custom colorscheme for the UI. See `ptpython/layout.py` and
 # `ptpython/style.py` for all possible tokens.
