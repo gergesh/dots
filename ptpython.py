@@ -178,6 +178,7 @@ def configure(repl):
         repl._execute('import re')
         repl._execute('import struct')
         repl._execute('from pathlib import Path')
+        repl._execute('from base64 import b64encode, b64decode')
 
         repl._execute('try:\n    import requests\nexcept ImportError:\n    pass')
 
