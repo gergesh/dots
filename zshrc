@@ -81,8 +81,8 @@ setopt no_auto_remove_slash
 setopt interactive_comments
 
 # Load other configuration files
-[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 [ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
+[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 [ -f "$HOME/.config/machinerc" ] && source "$HOME/.config/machinerc"
 
 # Load fasd shortcuts
