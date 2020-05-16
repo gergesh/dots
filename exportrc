@@ -6,6 +6,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export ADB_VENDOR_KEY="$XDG_CONFIG_HOME/android"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite_history"
+export STACK_ROOT="$XDG_DATA_HOME/stack"
+
 # Programs
 export EDITOR='vim'
 export BROWSER='firefox'
