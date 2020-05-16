@@ -5,16 +5,18 @@ nvim:
 	cp vimrc ~/.config/nvim/init.vim
 
 nvim-plug:
-	mkdir -p ~/.local/share/nvim/site/autoload
-	curl -L https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -o ~/.local/share/nvim/site/autoload/plug.vim
+	[ -f ~/.local/share/nvim/site/autoload/plug.vim ] || \
+		curl -L https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+		     -o ~/.local/share/nvim/site/autoload/plug.vim \
+		     --create-dirs
 
 tmux:
 	mkdir -p ~/.config/tmux
 	cp tmux.conf ~/.config/tmux/tmux.conf
-	ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
+	[ -L ~/.tmux.conf ] || ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 tpm:
-	git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm || true
+	[ -d ~/.config/tmux/plugins/tpm ] || git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 	~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
 
 bins:
