@@ -4,9 +4,13 @@ alias ll='ls -la'
 
 # git
 alias g='git'
-alias gs='git status'
-alias gsh='git show'
-alias gv='git show'
+gs() {
+    if [ $# -eq 0 ]; then
+        git status
+    else
+        git show $@
+    fi
+}
 alias ga='git add'
 alias gaa='git add --all'
 alias gc='git commit'
