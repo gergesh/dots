@@ -174,13 +174,14 @@ def configure(repl):
     """
 
     def import_common(repl):
-        repl._execute('import json')
-        repl._execute('import re')
-        repl._execute('import struct')
-        repl._execute('from pathlib import Path')
-        repl._execute('from base64 import b64encode, b64decode')
+        execute_fn = getattr(repl, '_execute', None) or repl.ipython_shell.run_cell
+        execute_fn('import json')
+        execute_fn('import re')
+        execute_fn('import struct')
+        execute_fn('from pathlib import Path')
+        execute_fn('from base64 import b64encode, b64decode')
 
-        repl._execute('try:\n    import requests\nexcept ImportError:\n    pass')
+        execute_fn('try:\n    import requests\nexcept ImportError:\n    pass')
 
     Thread(target=import_common, args=(repl, ), daemon=True).start()
 
