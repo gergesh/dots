@@ -12,6 +12,7 @@ Plug 'machakann/vim-sandwich'
 if executable('node')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
+Plug 'rootkiter/vim-hexedit'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
