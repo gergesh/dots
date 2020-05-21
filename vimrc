@@ -1,7 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 Plug 'arcticicestudio/nord-vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'jiangmiao/auto-pairs'
 if file_readable('/usr/share/vim/vimfiles/plugin/fzf.vim')
     Plug '/usr/share/vim/vimfiles/'
 else
@@ -12,6 +11,7 @@ Plug 'machakann/vim-sandwich'
 if executable('node')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
+Plug 'Raimondi/delimitMate'
 Plug 'rootkiter/vim-hexedit'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,8 +34,8 @@ syntax on
 filetype plugin indent on
 colorscheme nord
 
-" Only add closing pairs for braces, brackets and parentheses
-let g:AutoPairs = {'{': '}', '(': ')', '[': ']'}
+" Insert a new line and indent after a brace followed by a new line
+let g:delimitMate_expand_cr = 1
 
 " Run xrdb automatically when editing X config files
 au BufWritePost *Xresources !xrdb %
