@@ -70,6 +70,16 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# py shortcut
+_accept_line() {
+    if [[ $BUFFER = py\ * ]]; then
+        py_wrapper.py "${BUFFER#py }"
+    fi
+    zle .accept-line
+}
+zle -N accept-line _accept_line
+alias py='#'
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
