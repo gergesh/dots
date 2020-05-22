@@ -28,4 +28,4 @@ if for_shell is None:
     print('\n' + out, end='')
 else:
     from subprocess import check_output
-    print(check_output(['echo {} {}'.format(shlex.quote(out), for_shell)], shell=True)[:-1].decode(), end='' if '>' in for_shell else '\n')
+    print(check_output(['echo {} {}'.format(shlex.quote(out), for_shell)], shell=True).decode(), end='')
