@@ -66,3 +66,4 @@ bak() {
     fi
 }
 alias cmusync="tail -f -n 1 ~/.config/cmus/cmusync 2> /dev/null"
+alias py='python'
