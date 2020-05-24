@@ -81,6 +81,9 @@ alias p='#'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Clear the screen using C-r
+bindkey '^r' clear-screen
+
 # Keep trailing slashes on commands
 setopt no_auto_remove_slash
 
