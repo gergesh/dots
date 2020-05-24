@@ -18,6 +18,12 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
+# Quote pasted URLs automatically
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
 # Make lowercase letters match both lowercase and uppercase letters, but only if no exact matches are found.
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
 
