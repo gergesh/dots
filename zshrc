@@ -30,9 +30,6 @@ bindkey "^[[1~" beginning-of-line
 bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
 
-# Ctrl-C to clear line
-bindkey "^C" vi-kill-line
-
 # Search history using Up and Down keys
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
