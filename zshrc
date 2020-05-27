@@ -76,7 +76,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # p shortcut
 _accept_line() {
     if [[ $BUFFER = p\ * ]]; then
-        p_wrapper.py "${BUFFER#p }"
+        python3 ~/.local/lib/p_wrapper.py "${BUFFER#p }"
     fi
     zle .accept-line
 }
