@@ -1,31 +1,41 @@
 #!/usr/bin/env python3
-# This script handles the "py" shell shortcut
+# This script handles the "p" shell shortcut
+# Example usage: `p 'A'*300 #> as.txt`
 
+from subprocess import DEVNULL, check_output
 from sys import argv
 
-cmd = argv[1]
-for_shell = None
-if '>' in cmd or '|' in cmd:
-    import shlex
-    parts = shlex.split(cmd, posix=False)
-    real_cmd = []
-    for i, p in enumerate(parts):
-        if p == '>' or p == '|':
-            for_shell = ' '.join(parts[i:])
-            break
-        else:
-            real_cmd.append(p)
-    cmd = ' '.join(real_cmd)
 
-ss = cmd.split(';')
-for s in ss[:-1]:
-    exec(s)
-out = eval(ss[-1])
-if isinstance(out, bytes):
-    out = out.decode()
-out = str(out)
-if for_shell is None:
-    print('\n' + out, end='')
-else:
-    from subprocess import check_output
-    print(check_output(['echo {} {}'.format(shlex.quote(out), for_shell)], shell=True).decode(), end='')
+def quote(s):
+    return "'" + s.replace("'", "'\"'\"'") + "'"
+
+cmd = argv[1]
+q = None
+i = 0
+s = 0
+ex = []
+while i < len(cmd):
+    c = cmd[i]
+    if c == '\\':
+        i += 1
+    elif q is None:
+        if c in '\'"':
+            q = c
+        elif c == ';':
+            ex.append(cmd[s:i])
+            s = i + 1
+        elif c == '#':
+            break
+    elif c == q:
+        q = None
+    i += 1
+
+ev = cmd[s:i]
+sp = cmd[i+1:]
+g, l = {}, {}
+for e in ex:
+    exec(e, g, l)
+out = eval(ev, g, l)
+if sp:
+    out = check_output(f'echo {quote(str(out))} {sp}', shell=True).rstrip().decode()
+print(f'\n{out}', end='')
