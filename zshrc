@@ -73,6 +73,9 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+# Load the zmv function
+autoload -Uz zmv
+
 # p shortcut
 _accept_line() {
     if [[ $BUFFER = p\ * ]]; then
