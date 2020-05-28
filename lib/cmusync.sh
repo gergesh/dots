@@ -4,6 +4,8 @@
 
 LYRICS_FILE="${LYRICS_FILE:-$HOME/.config/cmus/cmusync}"
 
+command -v cmusfm && cmusfm "$@"
+
 # Kill other instances of this script
 pkill -f '^awk -v script_identifier=cmusync'
 
