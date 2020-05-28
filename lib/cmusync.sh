@@ -55,5 +55,3 @@ BEGIN {
     position = line_timing
 }
 ' "${file%.*}.lrc" > "$LYRICS_FILE"
-
-true > "$LYRICS_FILE"
