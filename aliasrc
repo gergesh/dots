@@ -59,11 +59,7 @@ alias epoch='date +%s'
 alias vi='vim'
 mkd() { mkdir -p "$1" && cd "$1" }
 bak() {
-    if [ -f "$1.bak" ]; then
-        echo "File $1.bak already exists"
-    else
-        cp -- "$1" "$1.bak"
-    fi
+    cp -i -- "$1" "$1.bak"
 }
 alias cmusync="tail -f -n 1 ~/.config/cmus/cmusync 2> /dev/null"
 alias py='python'
