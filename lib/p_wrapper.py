@@ -2,6 +2,8 @@
 # This script handles the "p" shell shortcut
 # Example usage: `p 'A'*300 #> as.txt`
 
+from contextlib import redirect_stdout
+from io import StringIO
 from sys import argv
 
 cmd = argv[1]
@@ -28,10 +30,17 @@ while i < len(cmd):
 ev = cmd[s:i]
 sp = cmd[i+1:]
 g, l = {}, {}
-for e in ex:
-    exec(e, g, l)
-out = eval(ev, g, l)
+o = StringIO()
+with redirect_stdout(o):
+    for e in ex:
+        exec(e, g, l)
+    out = eval(ev, g, l)
+o.seek(0)
+out = o.read() or out
+
 if sp:
     from subprocess import check_output
-    out = check_output(f'cat {sp}', shell=True, input=str(out).encode()).rstrip().decode()
+    if not isinstance(out, bytes):
+        out = str(out).encode()
+    out = check_output(f'cat {sp}', shell=True, input=out).rstrip().decode()
 print(f'\n{out}', end='')
