@@ -27,6 +27,7 @@ while i < len(cmd):
         q = None
     i += 1
 
+print()
 ev = cmd[s:i]
 sp = cmd[i+1:]
 g, l = {}, {}
@@ -43,4 +44,4 @@ if sp:
     if not isinstance(out, bytes):
         out = str(out).encode()
     out = check_output(f'cat {sp}', shell=True, input=out).rstrip().decode()
-print(f'\n{out}', end='')
+print(out, end='')
