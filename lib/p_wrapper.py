@@ -2,7 +2,6 @@
 # This script handles the "p" shell shortcut
 # Example usage: `p 'A'*300 #> as.txt`
 
-from subprocess import DEVNULL, check_output
 from sys import argv
 
 cmd = argv[1]
@@ -33,5 +32,6 @@ for e in ex:
     exec(e, g, l)
 out = eval(ev, g, l)
 if sp:
+    from subprocess import check_output
     out = check_output(f'cat {sp}', shell=True, input=str(out).encode()).rstrip().decode()
 print(f'\n{out}', end='')
