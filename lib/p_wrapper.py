@@ -5,10 +5,6 @@
 from subprocess import DEVNULL, check_output
 from sys import argv
 
-
-def quote(s):
-    return "'" + s.replace("'", "'\"'\"'") + "'"
-
 cmd = argv[1]
 q = None
 i = 0
@@ -37,5 +33,5 @@ for e in ex:
     exec(e, g, l)
 out = eval(ev, g, l)
 if sp:
-    out = check_output(f'echo {quote(str(out))} {sp}', shell=True).rstrip().decode()
+    out = check_output(f'cat {sp}', shell=True, input=str(out).encode()).rstrip().decode()
 print(f'\n{out}', end='')
