@@ -48,12 +48,20 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-Left>  :TmuxNavigateLeft<cr>
 inoremap <silent> <C-Left>  <C-o>:TmuxNavigateLeft<cr>
+nnoremap <silent> <C-h>  :TmuxNavigateLeft<cr>
+inoremap <silent> <C-h>  <C-o>:TmuxNavigateLeft<cr>
 nnoremap <silent> <C-Down>  :TmuxNavigateDown<cr>
 inoremap <silent> <C-Down>  <C-o>:TmuxNavigateDown<cr>
+nnoremap <silent> <C-j>  :TmuxNavigateDown<cr>
+inoremap <silent> <C-j>  <C-o>:TmuxNavigateDown<cr>
 nnoremap <silent> <C-Up>    :TmuxNavigateUp<cr>
 inoremap <silent> <C-Up>    <C-o>:TmuxNavigateUp<cr>
+nnoremap <silent> <C-k>    :TmuxNavigateUp<cr>
+inoremap <silent> <C-k>    <C-o>:TmuxNavigateUp<cr>
 nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
 inoremap <silent> <C-Right> <C-o>:TmuxNavigateRight<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+inoremap <silent> <C-l> <C-o>:TmuxNavigateRight<cr>
 
 " Disable annoying ex mode misclick
 nnoremap Q <Nop>
