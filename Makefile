@@ -36,3 +36,29 @@ zsh:
 ptpython:
 	mkdir -p ~/.config/ptpython
 	cp ptpython.py ~/.config/ptpython/config.py
+
+prepare-offline:
+	mkdir -p offline-preparation \
+		; cd offline-preparation \
+		; mkdir -p vim-plugins \
+		; cd vim-plugins \
+			; git clone https://github.com/junegunn/vim-plug --depth=1 \
+			; cat ../../vimrc \
+			| grep -Po "Plug '\K([^/]+/[^']+)" \
+			| sed 's/^/https:\/\/github.com\//' \
+			| xargs -I {} git clone --depth=1 {}
+	cd offline-preparation \
+		; mkdir -p tmux-plugins \
+		; cd tmux-plugins \
+			; cat ../../tmux.conf \
+			| grep -Po "set-option -g @plugin '\K[^']+" \
+			| sed 's/^/https:\/\/github.com\//' \
+			| xargs -I {} git clone --depth=1 {}
+	cd offline-preparation \
+		; mkdir -p python-packages \
+		; cd python-packages \
+			; pip download ptpython
+	cd offline-preparation \
+		; mkdir -p util \
+		; cd util \
+			; git clone https://github.com/clvv/fasd --depth=1 \
