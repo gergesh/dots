@@ -1,4 +1,5 @@
 install: nvim nvim-plug tmux tpm bins libs zsh ptpython
+install-offline: nvim nvim-plug-offline tmux tpm-offline bins libs zsh ptpython
 
 nvim:
 	mkdir -p ~/.config/nvim
@@ -10,6 +11,10 @@ nvim-plug:
 		     -o ~/.local/share/nvim/site/autoload/plug.vim \
 		     --create-dirs
 
+nvim-plug-offline:
+	mkdir -p  ~/.local/share/nvim/site/autoload/
+	cp ./offline-preparation/vim-plugins/vim-plug/plug.vim ~/.local/share/nvim/site/autoload/
+
 tmux:
 	mkdir -p ~/.config/tmux
 	cp tmux.conf ~/.config/tmux/tmux.conf
@@ -17,6 +22,11 @@ tmux:
 
 tpm:
 	[ -d ~/.config/tmux/plugins/tpm ] || git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+	~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
+
+tpm-offline:
+	mkdir -p ~/.config/tmux/plugins
+	cp -r ./offline-preparation/tmux-plugins/tpm ~/.config/tmux/plugins/
 	~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
 
 bins:
