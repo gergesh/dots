@@ -14,6 +14,8 @@ nvim-plug:
 nvim-plug-offline:
 	mkdir -p  ~/.local/share/nvim/site/autoload/
 	cp ./offline-preparation/vim-plugins/vim-plug/plug.vim ~/.local/share/nvim/site/autoload/
+	mkdir -p ~/.config/nvim/plugged
+	cp -r ./offline-preparation/vim-plugins/* ~/.config/nvim/plugged/
 
 tmux:
 	mkdir -p ~/.config/tmux
@@ -26,7 +28,7 @@ tpm:
 
 tpm-offline:
 	mkdir -p ~/.config/tmux/plugins
-	cp -r ./offline-preparation/tmux-plugins/tpm ~/.config/tmux/plugins/
+	cp -r ./offline-preparation/tmux-plugins/* ~/.config/tmux/plugins/
 	~/.config/tmux/plugins/tpm/scripts/install_plugins.sh
 
 bins:
