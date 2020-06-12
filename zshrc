@@ -105,4 +105,4 @@ setopt interactive_comments
 [ -f "$HOME/.config/machinerc" ] && source "$HOME/.config/machinerc"
 
 # Load fasd shortcuts
-eval "$(fasd --init auto)"
+command -v fasd > /dev/null && eval "$(fasd --init auto)"
