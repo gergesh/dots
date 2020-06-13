@@ -12,7 +12,7 @@ HISTFILE=~/.cache/zsh_history
 autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zcompdump"
 _comp_options+=(globdots)
 
 # Quote pasted URLs automatically
