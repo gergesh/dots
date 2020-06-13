@@ -1,6 +1,3 @@
-# The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
-
 # Colors and prompt
 autoload -U colors && colors
 [ -n "$SSH_CLIENT" ] && PS1_HOSTNAME="@$(hostname)"
