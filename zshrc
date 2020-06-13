@@ -1,3 +1,6 @@
+# Source environment variables
+[ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
+
 # Colors and prompt
 autoload -U colors && colors
 [ -n "$SSH_CLIENT" ] && PS1_HOSTNAME="@$(hostname)"
@@ -92,7 +95,6 @@ setopt no_auto_remove_slash
 setopt interactive_comments
 
 # Load other configuration files
-[ -f "$HOME/.config/exportrc" ] && source "$HOME/.config/exportrc"
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 [ -f "$HOME/.config/machinerc" ] && source "$HOME/.config/machinerc"
 
