@@ -33,27 +33,24 @@ export KEYTIMEOUT=1
 
 # Fix common keys
 bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
 bindkey "^[[3~" delete-char
+bindkey "^[[4~" end-of-line
 
 # Search history using Up and Down keys
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[5~" history-beginning-search-backward-end
-bindkey "^[[6~" history-beginning-search-backward-end
 bindkey "^[[B" history-beginning-search-forward-end
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 
 # Change cursor shape for different vi modes.
-function zle-keymap-select {
+zle-keymap-select() {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
     echo -ne '\e[1 q'
@@ -65,25 +62,23 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
+
 zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
     echo -ne "\e[5 q"
 }
 zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # Load the zmv function
 autoload -Uz zmv
 
 # p shortcut
-_accept_line() {
+accept-line() {
     if [[ $BUFFER = p\ * ]]; then
         python3 ~/.local/lib/p_wrapper.py "${BUFFER#p }"
     fi
     zle .accept-line
 }
-zle -N accept-line _accept_line
+zle -N accept-line
 alias p='#'
 
 # Edit line in vim with ctrl-e:
