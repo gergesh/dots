@@ -67,5 +67,6 @@ inoremap <silent> <C-l> <C-o>:TmuxNavigateRight<cr>
 " Disable annoying ex mode misclick
 nnoremap Q <Nop>
 
-" Allow :Q for quitting
+" Allow :Q for quitting, :Wq for saving and quitting
 command Q q
+command Wq wq
