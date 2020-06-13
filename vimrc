@@ -13,6 +13,7 @@ if executable('node')
 endif
 Plug 'Raimondi/delimitMate'
 Plug 'rootkiter/vim-hexedit'
+Plug 'tpope/vim-sleuth'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
