@@ -88,6 +88,9 @@ bindkey '^e' edit-command-line
 # Clear the screen using C-q
 bindkey '^q' clear-screen
 
+# Swap last two characters using C-t
+bindkey '^t' gosmacs-transpose-chars
+
 # Keep trailing slashes on commands
 setopt no_auto_remove_slash
 
