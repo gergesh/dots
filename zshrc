@@ -85,8 +85,8 @@ alias p='#'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Clear the screen using C-q
-bindkey '^q' clear-screen
+# Clear the screen using C-x
+bindkey '^x' clear-screen
 
 # Swap last two characters using C-t
 bindkey '^t' gosmacs-transpose-chars
