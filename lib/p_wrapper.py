@@ -6,8 +6,9 @@ import pickle
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
-from sys import argv, stderr
+from sys import argv, path, stderr
 
+path.insert(0, '')
 LAST_RESULT = Path('~/.cache/p_last.pkl').expanduser()
 
 cmd = argv[1]
