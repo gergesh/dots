@@ -6,7 +6,7 @@ import pickle
 from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
-from sys import argv
+from sys import argv, stderr
 
 LAST_RESULT = Path('~/.cache/p_last.pkl').expanduser()
 
@@ -31,7 +31,6 @@ while i < len(cmd):
         q = None
     i += 1
 
-print()
 ev = cmd[s:i]
 sp = cmd[i+1:]
 g, l = {}, {}
@@ -41,12 +40,20 @@ if LAST_RESULT.is_file():
 o = StringIO()
 out = ''
 with redirect_stdout(o):
-    for e in ex:
-        exec(e, g, l)
     try:
-        out = eval(ev, g, l)
-    except SyntaxError:
-        exec(ev, g, l)
+        for e in ex:
+            exec(e, g, l)
+        try:
+            out = eval(ev, g, l)
+        except SyntaxError:
+            exec(ev, g, l)
+    except Exception as e:
+        import traceback
+        o = StringIO()
+        o.write('\n')
+        traceback.print_exc(file=o, chain=False)
+        print(o.getvalue()[:-1], end='', file=stderr)
+        exit()
 
 out = o.getvalue() or out
 
@@ -55,6 +62,7 @@ if sp:
     if not isinstance(out, bytes):
         out = str(out).encode()
     out = check_output(f'cat {sp}', shell=True, input=out).rstrip().decode()
-print(out, end='')
-with LAST_RESULT.open('wb') as f:
-    pickle.dump(out, f)
+if out and (type(out) != str or out.strip()):
+    print(f'\n{out}', end='')
+    with LAST_RESULT.open('wb') as f:
+        pickle.dump(out, f)
