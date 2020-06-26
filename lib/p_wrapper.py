@@ -39,10 +39,15 @@ if LAST_RESULT.is_file():
     with LAST_RESULT.open('rb') as f:
         g['_'] = pickle.load(f)
 o = StringIO()
+out = ''
 with redirect_stdout(o):
     for e in ex:
         exec(e, g, l)
-    out = eval(ev, g, l)
+    try:
+        out = eval(ev, g, l)
+    except SyntaxError:
+        exec(ev, g, l)
+
 out = o.getvalue() or out
 
 if sp:
