@@ -2,9 +2,13 @@
 # This script handles the "p" shell shortcut
 # Example usage: `p 'A'*300 #> as.txt`
 
+import pickle
 from contextlib import redirect_stdout
 from io import StringIO
+from pathlib import Path
 from sys import argv
+
+LAST_RESULT = Path('~/.cache/p_last.pkl').expanduser()
 
 cmd = argv[1]
 q = None
@@ -31,6 +35,9 @@ print()
 ev = cmd[s:i]
 sp = cmd[i+1:]
 g, l = {}, {}
+if LAST_RESULT.is_file():
+    with LAST_RESULT.open('rb') as f:
+        g['_'] = pickle.load(f)
 o = StringIO()
 with redirect_stdout(o):
     for e in ex:
@@ -44,3 +51,5 @@ if sp:
         out = str(out).encode()
     out = check_output(f'cat {sp}', shell=True, input=out).rstrip().decode()
 print(out, end='')
+with LAST_RESULT.open('wb') as f:
+    pickle.dump(out, f)
