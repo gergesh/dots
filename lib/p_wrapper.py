@@ -36,8 +36,7 @@ with redirect_stdout(o):
     for e in ex:
         exec(e, g, l)
     out = eval(ev, g, l)
-o.seek(0)
-out = o.read() or out
+out = o.getvalue() or out
 
 if sp:
     from subprocess import check_output
