@@ -37,9 +37,12 @@ while i < len(cmd):
 ev = cmd[s:i]
 sp = cmd[i+1:]
 g, l = {}, {}
+
 if LAST_RESULT.is_file():
     with LAST_RESULT.open('rb') as f:
         g['_'] = pickle.load(f)
+g['Path'] = Path
+
 o = StringIO()
 out = ''
 with redirect_stdout(o):
