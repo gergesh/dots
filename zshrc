@@ -91,6 +91,13 @@ bindkey '^x' clear-screen
 # Swap last two characters using C-t
 bindkey '^t' gosmacs-transpose-chars
 
+# Allow C-q and C-s keys
+# C-q is bound to vi-quoted-insert by default
+stty -ixon
+
+# Comment/uncomment using C-s
+bindkey '^s' vi-pound-insert
+
 # Keep trailing slashes on commands
 setopt no_auto_remove_slash
 
