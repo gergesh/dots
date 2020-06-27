@@ -32,6 +32,7 @@ bindkey -v
 export KEYTIMEOUT=1
 
 # Fix common keys
+bindkey "^?" backward-delete-char  # Otherwise backspace only deletes up to where insert mode was last entered
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[4~" end-of-line
