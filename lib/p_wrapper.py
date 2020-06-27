@@ -26,6 +26,8 @@ while i < len(cmd):
         elif c == ';':
             ex.append(cmd[s:i])
             s = i + 1
+            if cmd[s] == ' ' and cmd[s+1] != ' ':
+                s += 1
         elif c == '#':
             break
     elif c == q:
