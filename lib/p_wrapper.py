@@ -36,7 +36,7 @@ while i < len(cmd):
 
 ev = cmd[s:i]
 sp = cmd[i+1:]
-g, l = {}, {}
+g = {}
 
 if LAST_RESULT.is_file():
     with LAST_RESULT.open('rb') as f:
@@ -48,11 +48,11 @@ out = ''
 with redirect_stdout(o):
     try:
         for e in ex:
-            exec(e, g, l)
+            exec(e, g, g)
         try:
-            out = eval(ev, g, l)
+            out = eval(ev, g, g)
         except SyntaxError:
-            exec(ev, g, l)
+            exec(ev, g, g)
     except Exception as e:
         import traceback
         o = StringIO()
