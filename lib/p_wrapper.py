@@ -69,7 +69,7 @@ if sp:
     if not isinstance(out, bytes):
         out = str(out).encode()
     out = check_output(f'cat {sp}', shell=True, input=out).rstrip().decode()
-if out and (type(out) != str or out.strip()):
+if out is not None and (not isinstance(out, str) or out.strip()):
     print(f'\n{out}', end='')
     with LAST_RESULT.open('wb') as f:
         pickle.dump(out, f)
