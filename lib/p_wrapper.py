@@ -3,7 +3,7 @@
 # Example usage: `p 'A'*300 #> as.txt`
 
 import pickle
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout, suppress
 from io import StringIO
 from pathlib import Path
 from sys import argv, path, stderr
@@ -40,7 +40,8 @@ g = {}
 
 if LAST_RESULT.is_file():
     with LAST_RESULT.open('rb') as f:
-        g['_'] = pickle.load(f)
+        with suppress(EOFError):
+            g['_'] = pickle.load(f)
 g['Path'] = Path
 
 o = StringIO()
