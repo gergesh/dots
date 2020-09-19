@@ -72,4 +72,5 @@ if sp:
 if out is not None and (not isinstance(out, str) or out.strip()):
     print(f'\n{out}', end='')
     with LAST_RESULT.open('wb') as f:
-        pickle.dump(out, f)
+        with suppress(TypeError):
+            pickle.dump(out, f)
