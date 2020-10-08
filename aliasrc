@@ -58,6 +58,6 @@ alias mitmproxy="mitmproxy --set confdir=${XDG_CONFIG_HOME:-$HOME/.config}/mitmp
 alias epoch='date +%s'
 alias vi='vim'
 mkd() { mkdir -p "$1" && cd "$1" }
-bak() { cp -i -- "$1" "$1.bak" }
+bak() { cp -ri -- "$1" "$1.bak" }
 alias cmusync="tail -f -n 1 ~/.config/cmus/cmusync 2> /dev/null"
 alias py='python'
