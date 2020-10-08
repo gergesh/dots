@@ -1,6 +1,6 @@
 # ls improvements
 alias ls='ls --color=auto'
-alias ll='ls -la'
+alias ll='ls -lA'
 
 # git
 alias g='git'
