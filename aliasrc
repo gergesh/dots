@@ -11,6 +11,12 @@ gs() {
         git show $@
     fi
 }
+_gs() {
+    (( CURRENT++ ))
+    words[1]=(git show)
+    _normal
+}
+compdef _gs gs
 alias ga='git add'
 alias gaa='git add --all'
 alias gc='git commit'
