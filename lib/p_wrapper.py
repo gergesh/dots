@@ -3,39 +3,29 @@
 # Example usage: `p 'A'*300 #> as.txt`
 
 import pickle
+from ast import parse
 from contextlib import redirect_stdout, suppress
 from io import StringIO
 from pathlib import Path
 from sys import argv, path, stderr
 
-path.insert(0, '')
+
+def handle(e: Exception):
+    import traceback
+    o = StringIO()
+    o.write('\n')
+    traceback.print_exc(file=o, chain=False)
+    print(o.getvalue()[:-1], end='', file=stderr)
+    exit(1)
+
+
 LAST_RESULT = Path('~/.cache/p_last.pkl').expanduser()
+path.insert(0, '')
+try:
+    ast = parse(argv[1], mode='single').body
+except Exception as e:
+    handle(e)
 
-cmd = argv[1]
-q = None
-i = 0
-s = 0
-ex = []
-while i < len(cmd):
-    c = cmd[i]
-    if c == '\\':
-        i += 1
-    elif q is None:
-        if c in '\'"':
-            q = c
-        elif c == ';':
-            ex.append(cmd[s:i])
-            s = i + 1
-            if cmd[s] == ' ' and cmd[s+1] != ' ':
-                s += 1
-        elif c == '#':
-            break
-    elif c == q:
-        q = None
-    i += 1
-
-ev = cmd[s:i]
-sp = cmd[i+1:]
 g = {}
 
 if LAST_RESULT.is_file():
@@ -48,22 +38,18 @@ o = StringIO()
 out = ''
 with redirect_stdout(o):
     try:
-        for e in ex:
-            exec(e, g, g)
+        exec(argv[1][: ast[-1].col_offset], g, g)
         try:
-            out = eval(ev, g, g)
+            out = eval(argv[-1][ast[-1].col_offset : ast[-1].end_col_offset], g, g)
         except SyntaxError:
-            exec(ev, g, g)
+            exec(argv[-1][ast[-1].col_offset : ast[-1].end_col_offset], g, g)
     except Exception as e:
-        import traceback
-        o = StringIO()
-        o.write('\n')
-        traceback.print_exc(file=o, chain=False)
-        print(o.getvalue()[:-1], end='', file=stderr)
-        exit()
+        handle(e)
 
 out = o.getvalue() or out
 
+sp = argv[1][ast[-1].end_col_offset :]
+sp = sp[sp.find('#'):][1:]
 if sp:
     from subprocess import check_output
     if not isinstance(out, bytes):
