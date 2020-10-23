@@ -1,5 +1,5 @@
-install: nvim nvim-plug tmux tpm bins libs zsh ptpython
-install-offline: nvim nvim-plug-offline tmux tpm-offline bins libs zsh ptpython
+install: nvim nvim-plug tmux tpm bins libs zsh ptpython readline
+install-offline: nvim nvim-plug-offline tmux tpm-offline bins libs zsh ptpython readline
 
 nvim:
 	mkdir -p ~/.config/nvim
@@ -44,6 +44,9 @@ zsh:
 	cp zshrc ~/.zshrc
 	cp aliasrc ~/.config/
 	cp exportrc ~/.config/
+
+readline:
+	cp inputrc ~/.inputrc
 
 ptpython:
 	mkdir -p ~/.config/ptpython
