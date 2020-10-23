@@ -26,13 +26,11 @@ try:
 except Exception as e:
     handle(e)
 
-g = {}
-
+g = {'Path': Path}
 if LAST_RESULT.is_file():
     with LAST_RESULT.open('rb') as f:
         with suppress(EOFError):
             g['_'] = pickle.load(f)
-g['Path'] = Path
 
 o = StringIO()
 out = ''
