@@ -14,7 +14,7 @@ def handle(e: Exception):
     import traceback
     o = StringIO()
     o.write('\n')
-    traceback.print_exc(file=o, chain=False)
+    traceback.print_exc(limit=-1, file=o, chain=False)
     print(o.getvalue()[:-1], end='', file=stderr)
     exit(1)
 
