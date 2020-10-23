@@ -71,6 +71,7 @@ zle -N zle-line-init
 
 # Load the zmv function
 autoload -Uz zmv
+alias mmv='noglob zmv -W'
 
 # p shortcut
 accept-line() {
