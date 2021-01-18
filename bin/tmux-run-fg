@@ -11,11 +11,12 @@ if [ "$#" -ne 1 ]; then
     exit
 fi
 
+current_pane="$(tmux display-message -F '#D' -p)"
+
 if ! tmux list-sessions -F '#S' | grep -q "^$PROCESSES_SESSION\$"; then
     tmux new-session -s "$PROCESSES_SESSION" -d
 fi
 
-current_pane="$(tmux display-message -F '#D' -p)"
 is_zoomed="$(tmux display-message -p -F '#{window_zoomed_flag}')"
 [ "$is_zoomed" -eq 1 ] && resize_cmd="tmux resize-pane -t $current_pane -Z"
 temp_window="$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 32)"
