@@ -68,3 +68,4 @@ bak() { cp -ri -- "$1" "$1.bak" }
 alias cmusync="tail -f -n 1 ~/.config/cmus/cmusync 2> /dev/null"
 alias py='python'
 spec() { sxiv =(sox "$1" -n spectrogram -o -) }
+alias waitpid='tail -f /dev/null --pid'
