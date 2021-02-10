@@ -45,7 +45,7 @@ alias gri='git rebase -i'
 alias del='trash-put'
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -i'
+alias rm='rm -I'
 
 # fasd utils
 alias v='f -e vim'
