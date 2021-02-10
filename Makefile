@@ -1,5 +1,5 @@
-install: nvim nvim-plug tmux tpm bins libs zsh ptpython readline
-install-offline: nvim nvim-plug-offline tmux tpm-offline bins libs zsh ptpython readline
+install: nvim nvim-plug tmux tpm bins libs zsh ptpython readline usercustomize
+install-offline: nvim nvim-plug-offline tmux tpm-offline bins libs zsh ptpython readline usercustomize
 
 nvim:
 	mkdir -p ~/.config/nvim
@@ -51,6 +51,10 @@ readline:
 ptpython:
 	mkdir -p ~/.config/ptpython
 	cp ptpython.py ~/.config/ptpython/config.py
+
+site := $(shell python3 -s -m site --user-site)
+usercustomize:
+	cp usercustomize.py $(site)/
 
 prepare-offline:
 	mkdir -p offline-preparation \
