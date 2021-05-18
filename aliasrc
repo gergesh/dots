@@ -60,6 +60,8 @@ alias fm='mpv "$(fzf)"'
 
 # cleaning up our $HOME
 alias mitmproxy="mitmproxy --set confdir=${XDG_CONFIG_HOME:-$HOME/.config}/mitmproxy"
+alias mitmdump="mitmdump --set confdir=${XDG_CONFIG_HOME:-$HOME/.config}/mitmproxy"
+alias mitmweb="mitmweb --set confdir=${XDG_CONFIG_HOME:-$HOME/.config}/mitmproxy"
 
 # misc
 alias epoch='date +%s'
