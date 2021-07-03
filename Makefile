@@ -3,7 +3,8 @@ install-offline: nvim nvim-plug-offline tmux tpm-offline bins libs zsh ptpython 
 
 nvim:
 	mkdir -p ~/.config/nvim
-	cp vimrc ~/.config/nvim/init.vim
+	rm -f ~/.config/nvim/init.vim
+	cp init.lua ~/.config/nvim/init.lua
 
 nvim-plug:
 	[ -f ~/.local/share/nvim/site/autoload/plug.vim ] || \
