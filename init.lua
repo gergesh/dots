@@ -20,7 +20,7 @@ require('packer').startup(function()
   use 'tpope/vim-commentary'         -- "gc" to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
-  use 'joshdick/onedark.vim'         -- Theme inspired by Atom
+  use 'arcticicestudio/nord-vim'     -- Nord theme
   use 'itchyny/lightline.vim'        -- Fancier statusline
   -- Add indentation guides even on blank lines
   use { 'lukas-reineke/indent-blankline.nvim' }
@@ -60,13 +60,11 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn="yes"
 
---Set colorscheme (order is important here)
-vim.o.termguicolors = true
-vim.g.onedark_terminal_italics = 2
-vim.cmd[[colorscheme onedark]]
+--Set colorscheme
+vim.cmd[[colorscheme nord]]
 
 --Set statusbar
-vim.g.lightline = { colorscheme = 'onedark';
+vim.g.lightline = { colorscheme = 'nord';
       active = { left = { { 'mode', 'paste' }, { 'readonly', 'filename', 'modified' } } };
 }
 
