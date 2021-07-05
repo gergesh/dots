@@ -17,8 +17,6 @@ vim.api.nvim_exec([[
 local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'       -- Package manager
-  use 'tpope/vim-fugitive'           -- Git commands in nvim
-  use 'tpope/vim-rhubarb'            -- Fugitive-companion to interact with github
   use 'tpope/vim-commentary'         -- "gc" to comment visual regions/lines
   -- UI to select things (files, grep results, open buffers...)
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
@@ -69,8 +67,7 @@ vim.cmd[[colorscheme onedark]]
 
 --Set statusbar
 vim.g.lightline = { colorscheme = 'onedark';
-      active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } };
-      component_function = { gitbranch = 'fugitive#head', };
+      active = { left = { { 'mode', 'paste' }, { 'readonly', 'filename', 'modified' } } };
 }
 
 --Remap space as leader key
