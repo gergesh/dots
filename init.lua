@@ -20,7 +20,6 @@ require('packer').startup(function()
   use 'tpope/vim-fugitive'           -- Git commands in nvim
   use 'tpope/vim-rhubarb'            -- Fugitive-companion to interact with github
   use 'tpope/vim-commentary'         -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
   use 'joshdick/onedark.vim'         -- Theme inspired by Atom
