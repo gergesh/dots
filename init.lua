@@ -33,6 +33,7 @@ require('packer').startup(function()
     'TimUntersberger/neogit', requires = { 'nvim-lua/plenary.nvim' },
     config = function() require('neogit').setup() end
   }
+  use 'christoomey/vim-tmux-navigator'
 end)
 
 --Incremental live completion
@@ -272,3 +273,9 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+for _, mode in ipairs({'n', 'i'}) do
+  for _, dir in ipairs({'Left', 'Right', 'Up', 'Down'}) do
+    vim.api.nvim_set_keymap(mode, string.format('<C-%s>', dir), string.format('<cmd>TmuxNavigate%s<CR>', dir), {noremap = true, silent = true})
+  end
+end
