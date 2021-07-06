@@ -27,6 +27,7 @@ require('packer').startup(function()
   -- Add git related info in the signs columns and popups
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
   use 'neovim/nvim-lspconfig'        -- Collection of configurations for built-in LSP client
+  use 'kabouzeid/nvim-lspinstall'    -- Add LspInstall command
   use 'hrsh7th/nvim-compe'           -- Autocompletion plugin
   -- Git integration
   use {
@@ -179,35 +180,12 @@ local on_attach = function(_client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
--- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
-for _, lsp in ipairs(servers) do
+-- Enable language servers
+require('lspinstall').setup()
+local servers = require('lspinstall').installed_servers()
+for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
-
-local sumneko_root_path = vim.fn.getenv("HOME").."/.local/bin/sumneko_lua" -- Change to your sumneko root installation
-local sumneko_binary_path = "/bin/linux/lua-language-server" -- Change to your OS specific output folder
-nvim_lsp.sumneko_lua.setup {
-  cmd = {sumneko_root_path .. sumneko_binary_path, "-E", sumneko_root_path.."/main.lua" };
-  on_attach = on_attach,
-  settings = {
-      Lua = {
-          runtime = {
-              version = 'LuaJIT',
-              path = vim.split(package.path, ';'),
-          },
-          diagnostics = {
-              globals = {'vim'},
-          },
-          workspace = {
-              library = {
-                  [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                  [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-              },
-          },
-      },
-  },
-}
 
 -- Map :Format to vim.lsp.buf.formatting()
 vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
