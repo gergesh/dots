@@ -10,6 +10,9 @@ PS1="%F{blue}λ %1~$PS1_HOSTNAME %f"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh_history
+# Share history between terminal sessions
+setopt inc_append_history
+setopt share_history
 
 # Autocompletion
 autoload -U compinit
