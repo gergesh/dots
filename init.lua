@@ -50,6 +50,11 @@ require('packer').startup(function()
   }
 end)
 
+-- Indentation options
+vim.o.expandtab = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
 --Incremental live completion
 vim.o.inccommand = "nosplit"
 
