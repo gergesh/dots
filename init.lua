@@ -39,6 +39,15 @@ require('packer').startup(function()
   }
   use 'christoomey/vim-tmux-navigator'
   use 'tpope/vim-sleuth'             -- Automatically detect indentation level
+  use {
+    'plasticboy/vim-markdown', requires = { 'godlygeek/tabular' },
+    config = function()
+      vim.g.vim_markdown_folding_disabled = true
+      vim.g.vim_markdown_strikethrough = true
+      vim.g.vim_markdown_new_list_item_indent = 2
+      vim.opt.conceallevel = 2
+    end
+  }
 end)
 
 --Incremental live completion
