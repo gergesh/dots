@@ -38,6 +38,7 @@ require('packer').startup(function()
     config = function() require('neogit').setup() end
   }
   use 'christoomey/vim-tmux-navigator'
+  use 'tpope/vim-sleuth'             -- Automatically detect indentation level
 end)
 
 --Incremental live completion
