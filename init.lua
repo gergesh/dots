@@ -128,6 +128,7 @@ vim.api.nvim_set_keymap('n', '<leader>gp', [[<cmd>lua require('telescope.builtin
 
 -- Change preview window location
 vim.g.splitbelow = true
+vim.g.splitright = true
 
 -- Highlight on yank
 vim.api.nvim_exec([[
