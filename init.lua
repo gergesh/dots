@@ -99,25 +99,6 @@ vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
 vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile'}
 vim.g.indent_blankline_char_highlight = 'LineNr'
 
--- Toggle to disable mouse mode and indentlines for easier paste
-ToggleMouse = function()
-  if vim.o.mouse == 'a' then
-    vim.cmd[[IndentBlanklineDisable]]
-    vim.wo.signcolumn='no'
-    vim.o.mouse = 'v'
-    vim.wo.number = false
-    print("Mouse disabled")
-  else
-    vim.cmd[[IndentBlanklineEnable]]
-    vim.wo.signcolumn='yes'
-    vim.o.mouse = 'a'
-    vim.wo.number = true
-    print("Mouse enabled")
-  end
-end
-
-vim.api.nvim_set_keymap('n', '<F10>', '<cmd>lua ToggleMouse()<cr>', { noremap = true })
-
 -- Telescope
 require('telescope').setup {
   defaults = {
