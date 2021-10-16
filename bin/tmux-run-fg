@@ -20,5 +20,5 @@ temp_window="$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 32)"
 # The trap is in here to prevent a C-c from taking our terminal away from us.
 tmux new-window -t "$PROCESSES_SESSION" -n "$temp_window" "trap true INT; $1; tmux swap-pane -t $current_pane"
 temp_pane="$(tmux list-panes -t "$PROCESSES_SESSION" -F '#D')"
-tmux swap-pane -s "$current_pane" -t "$PROCESSES_SESSION:$temp_window"
+tmux swap-pane -Z -s "$current_pane" -t "$PROCESSES_SESSION:$temp_window"
 true  # Otherwise tmux interrupts us with the return code.
