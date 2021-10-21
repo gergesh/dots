@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+cur="$(cmus-remote -Q | sed -n 's/^file //p')"
+aud="${1:-$cur}"
+#lrc="${aud%.*}.lrc"
+
+exiftool -j "$aud" | jq -r ".[0].Lyrics"
