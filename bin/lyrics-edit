@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import re
+from pathlib import Path
+from subprocess import run
+
+import click
+import taglib
+from larrics.lyrics import strip_timestamps
+
+
+def main():
+    status = run(["cmus-remote", "-Q"], check=True, capture_output=True, text=True).stdout
+    file = Path(re.search(r"^file (.*)$", status, flags=re.MULTILINE).group(1))
+
+    lrc_file = file.with_suffix(".lrc")
+    synchronized = lrc_file.exists()
+
+    if synchronized:
+        lyrics = lrc_file.read_text()
+    else:
+        with taglib.File(str(file)) as f:
+            lyrics = (f.tags.get("LYRICS") or [""])[0]
+
+    lyrics = click.edit(lyrics)
+
+    if lyrics is None:
+        return 1
+
+    if synchronized:
+        lrc_file.write_text(lyrics)
+        lyrics = strip_timestamps(lyrics)
+
+    with taglib.File(str(file)) as f:
+        f.tags["LYRICS"] = [lyrics]
+        f.save()
+
+
+if __name__ == "__main__":
+    exit(main())
