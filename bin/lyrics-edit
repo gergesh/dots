@@ -26,6 +26,8 @@ def main():
 
     if lyrics is None:
         return 1
+    else:
+        lyrics = lyrics.strip()
 
     if synchronized:
         lrc_file.write_text(lyrics)
