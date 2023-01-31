@@ -2,12 +2,17 @@
 
 import argparse
 from subprocess import run
+from pyfzf.pyfzf import FzfPrompt
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("package")
+    parser.add_argument("package", nargs="?")
     args, unknown_args = parser.parse_known_args()
+
+    if args.package is None:
+        packages = [x.removeprefix("package:") for x in run(["adb"] + unknown_args + ["shell", "pm", "list", "packages"], check=True, capture_output=True, text=True).stdout.splitlines()]
+        args.package = FzfPrompt().prompt(packages)[0]
 
     p = run(["adb"] + unknown_args + ["shell", "pm", "path", args.package], check=True, capture_output=True, text=True)
     for line in p.stdout.strip().split("\n"):
