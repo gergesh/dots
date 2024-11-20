@@ -14,6 +14,9 @@ HISTFILE=~/.cache/zsh_history
 setopt inc_append_history
 setopt share_history
 
+# Don't add lines starting with space to history
+setopt histignorespace
+
 # Autocompletion
 autoload -U compinit
 zstyle ':completion:*' menu select
