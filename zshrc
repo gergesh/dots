@@ -118,3 +118,25 @@ setopt interactive_comments
 
 # Load fasd shortcuts
 command -v fasd > /dev/null && eval "$(fasd --init auto)"
+
+# uv
+eval "$(uv generate-shell-completion zsh)"
+_uv_run_mod() {
+    if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
+        # Check if any previous argument after 'run' ends with .py
+        if [[ ${words[3,$((CURRENT-1))]} =~ ".*\.py" ]]; then
+            # Already have a .py file, complete any files
+            _arguments '*:filename:_files'
+        else
+            # No .py file yet, complete only .py files
+            _arguments '*:filename:_files -g "*.py"'
+        fi
+    else
+        _uv "$@"
+    fi
+}
+compdef _uv_run_mod uv
+
+alias cclear="clear && printf '\e[3J'"
+alias cc='claude --dangerously-skip-permissions'
+alias td="cd $(mktemp -d)"
