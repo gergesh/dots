@@ -1,0 +1,7 @@
+# Copy this file to user.nix and fill in your details:
+#   cp user.nix.example user.nix
+{
+  username = "yoav";
+  fullName = "Yoav Shai";
+  email = "gergesh@gmail.com";
+}

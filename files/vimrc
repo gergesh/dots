@@ -1,24 +1,3 @@
-call plug#begin('~/.config/nvim/plugged')
-Plug 'arcticicestudio/nord-vim'
-Plug 'christoomey/vim-tmux-navigator'
-if file_readable('/usr/share/vim/vimfiles/plugin/fzf.vim')
-    Plug '/usr/share/vim/vimfiles/'
-else
-    Plug 'junegunn/fzf', { 'do': './install --bin' }
-endif
-Plug 'junegunn/fzf.vim'
-Plug 'machakann/vim-sandwich'
-if executable('node')
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-endif
-Plug 'Raimondi/delimitMate'
-Plug 'rootkiter/vim-hexedit'
-Plug 'tpope/vim-sleuth'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vimoutliner/vimoutliner'
-call plug#end()
-
 set nocompatible
 set number
 set backspace=indent,eol,start
@@ -38,9 +17,6 @@ colorscheme nord
 
 " Insert a new line and indent after a brace followed by a new line
 let g:delimitMate_expand_cr = 1
-
-" Run xrdb automatically when editing X config files
-au BufWritePost *Xresources !xrdb %
 
 " Jump to last position when opening a file
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
